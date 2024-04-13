@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://eclipse.dev/jetty/configure_10_0.dtd">
+<Configure id="httpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
+  <Call name="addCustomizer">
+    <Arg>
+      <New id="Rewrite" class="org.eclipse.jetty.rewrite.RewriteCustomizer">
+        <Set name="originalPathAttribute">
+          <Property name="jetty.rewrite.originalPathAttribute" default="jetty.rewrite.originalRequestPath" />
+        </Set>
+      </New>
+    </Arg>
+  </Call>
+</Configure>
