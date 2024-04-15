@@ -1,0 +1,12 @@
+end of minor GC
+System.gc()
+2157ms: [PS Eden Space: used=9186K, committed=65536K, init=65536K, max=1376256K] [PS Survivor Space: used=0K, committed=10752K, init=10752K, max=10752K] [PS Old Gen: used=0K, committed=175104K, init=175104K, max=2796544K]
+        [PS Eden Space: used=0K, committed=65536K, init=65536K, max=1376256K] [PS Survivor Space: used=1280K, committed=10752K, init=10752K, max=10752K] [PS Old Gen: used=8K, committed=175104K, init=175104K, max=2796544K]
+, Duration: 2ms
+PS Scavenge
+end of major GC
+System.gc()
+2159ms: [PS Eden Space: used=0K, committed=65536K, init=65536K, max=1376256K] [PS Survivor Space: used=1280K, committed=10752K, init=10752K, max=10752K] [PS Old Gen: used=8K, committed=175104K, init=175104K, max=2796544K]
+        [PS Eden Space: used=0K, committed=65536K, init=65536K, max=1376256K] [PS Survivor Space: used=0K, committed=10752K, init=10752K, max=10752K] [PS Old Gen: used=1108K, committed=175104K, init=175104K, max=2796544K]
+, Duration: 10ms
+PS MarkSweep
