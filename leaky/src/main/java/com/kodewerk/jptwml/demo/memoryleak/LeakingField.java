@@ -6,10 +6,7 @@ package com.kodewerk.jptwml.demo.memoryleak;
  ********************************************/
 
 public class LeakingField {
-
-    private String string = "more string stuff to leak";
-
-    public LeakingField() {}
+    private final String string = "more string stuff to leak";
 
     public String toString() {
         return string;
