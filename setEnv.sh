@@ -3,7 +3,7 @@
 ##### Edit this path
 ##### The path should point to the root directory of your Java installation
 ##### 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
 
 
 #### DO NOT EDIT BELOW THIS COMMENT
