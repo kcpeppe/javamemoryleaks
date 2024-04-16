@@ -13,20 +13,20 @@ import java.util.concurrent.*;
 public class Leaky extends JFrame {
     private final static ExecutorService leakerService =
             Executors.newSingleThreadExecutor();
+    private final LeakyModel model = new LeakyModel();
 
     public Leaky() {
         super("Leaky");
-
-        var model = new LeakyModel();
 
         var numberOfObjectsField = new JTextField("1000000", 10);
         var button = new JButton("Do Stuff");
         button.addActionListener(e -> {
             button.setEnabled(false);
             numberOfObjectsField.setEnabled(false);
+            long numberOfObjects = Long.parseLong(numberOfObjectsField.getText());
             leakerService.submit(() -> {
                 try {
-                    model.leak(Long.parseLong(numberOfObjectsField.getText()));
+                    model.leak(numberOfObjects);
                     EventQueue.invokeLater(() -> {
                         button.setEnabled(true);
                         numberOfObjectsField.setEnabled(true);
