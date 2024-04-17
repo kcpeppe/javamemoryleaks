@@ -1,2 +1,5 @@
 .idea
 target
+gc.log*
+exercise1/webapps/lab/WEB-INF/classes/
+exercise2/webapps/lab/WEB-INF/classes/
