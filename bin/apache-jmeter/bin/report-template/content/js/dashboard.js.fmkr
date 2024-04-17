@@ -46,6 +46,12 @@ function summaryTableHeader(header) {
 
     cell = document.createElement('th');
     cell.setAttribute("data-sorter", false);
+    cell.colSpan = 1;
+    cell.innerHTML = "Throughput";
+    newRow.appendChild(cell);
+
+    cell = document.createElement('th');
+    cell.setAttribute("data-sorter", false);
     cell.colSpan = 2;
     cell.innerHTML = "Network (KB/sec)";
     newRow.appendChild(cell);
@@ -130,12 +136,12 @@ $(document).ready(function() {
     var data = ${requestsSummary!"{}"};
     var dataset = [
         {
-            "label" : "KO",
+            "label" : "FAIL",
             "data" : data.KoPercent,
             "color" : "#FF6347"
         },
         {
-            "label" : "OK",
+            "label" : "PASS",
             "data" : data.OkPercent,
             "color" : "#9ACD32"
         }];
@@ -191,16 +197,18 @@ $(document).ready(function() {
             case 4:
             // Mean
             case 7:
-            // Percentile 1
+            // Median
             case 8:
-            // Percentile 2
+            // Percentile 1
             case 9:
-            // Percentile 3
+            // Percentile 2
             case 10:
-            // Throughput
+            // Percentile 3
             case 11:
-            // Kbytes/s
+            // Throughput
             case 12:
+            // Kbytes/s
+            case 13:
             // Sent Kbytes/s
                 item = item.toFixed(2);
                 break;

@@ -88,8 +88,8 @@ if [ -z "$JAVA_HOME" -a -z "$JRE_HOME" ]; then
   else
     JAVA_PATH=`which java 2>/dev/null`
     if [ "x$JAVA_PATH" != "x" ]; then
-      JAVA_PATH=`dirname $JAVA_PATH 2>/dev/null`
-      JRE_HOME=`dirname $JAVA_PATH 2>/dev/null`
+      JAVA_PATH=`dirname "$JAVA_PATH" 2>/dev/null`
+      JRE_HOME=`dirname "$JAVA_PATH" 2>/dev/null`
     fi
     if [ "x$JRE_HOME" = "x" ]; then
       # XXX: Should we try other locations?
@@ -126,14 +126,21 @@ CURRENT_VERSION=`"${JAVA_HOME}/bin/java" -version 2>&1 | awk -F'"' '/version/ {g
 
 # Check if Java is present and the minimal version requirement
 if [ "$CURRENT_VERSION" -gt "$MINIMAL_VERSION" ]; then
-    JAVA9_OPTS="--add-opens java.desktop/sun.awt=ALL-UNNAMED --add-opens java.desktop/sun.swing=ALL-UNNAMED --add-opens java.desktop/javax.swing.text.html=ALL-UNNAMED --add-opens java.desktop/java.awt=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED"
+    JAVA9_OPTS="--add-opens java.desktop/sun.awt=ALL-UNNAMED --add-opens java.desktop/sun.swing=ALL-UNNAMED --add-opens java.desktop/javax.swing.text.html=ALL-UNNAMED --add-opens java.desktop/java.awt=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED --add-opens=java.desktop/sun.awt.shell=ALL-UNNAMED"
 fi
 
 : "${JMETER_OPTS:=""}"
 case `uname` in
    Darwin*)
-   # Add Mac-specific property - should be ignored elsewhere (Bug 47064)
-   JMETER_OPTS="${JMETER_OPTS} -Xdock:name=JMeter -Xdock:icon=\"${PRGDIR}/../docs/images/jmeter_square.png\" -Dapple.laf.useScreenMenuBar=true -Dapple.eawt.quitStrategy=CLOSE_ALL_WINDOWS"
+   # Add Mac-specific properties - should be ignored elsewhere (Bug 47064)
+   if [ -f ${PRGDIR}/../xdocs/images/jmeter_square.png ]; then
+       JMETER_OPTS="${JMETER_OPTS} -Xdock:icon=${PRGDIR}/../xdocs/images/jmeter_square.png"
+   elif [ -f ${PRGDIR}/../docs/images/jmeter_square.png ]; then
+       JMETER_OPTS="${JMETER_OPTS} -Xdock:icon=${PRGDIR}/../docs/images/jmeter_square.png"
+   fi
+   # Note: macOS still shows "java" process name (see https://bugs.openjdk.java.net/browse/JDK-8173753)
+   # The workaround could be to distribute *.dmg bundle
+   JMETER_OPTS="${JMETER_OPTS} -Xdock:name=JMeter -Xdock:icon=${PRGDIR}/../docs/images/jmeter_square.png -Dapple.laf.useScreenMenuBar=true -Dapple.eawt.quitStrategy=CLOSE_ALL_WINDOWS"
    ;;
 esac
 
