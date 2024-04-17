@@ -2,4 +2,6 @@
 target
 gc.log*
 exercise1/webapps/lab/WEB-INF/classes/
+exercise1/jmeter.log
 exercise2/webapps/lab/WEB-INF/classes/
+exercise2/jmeter.log
