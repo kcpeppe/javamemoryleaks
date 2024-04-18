@@ -8,7 +8,7 @@ Resolve a memory leak.
 ### Description
 `Stocks` is a simple Jetty web application that is used to view stock prices. To run the web app:
 
-1. Open a terminal window and `cd` into `jptwml/exercise1`.
+1. Open a terminal window and `cd` into `exercise1`.
 2. Compile and start Jetty using the `compile` and `appServerStart` scripts.
 3. Test the app using the URL `http://localhost:8080/lab/stock`.
 4. Start JMeter using the provided `jmeter` script.

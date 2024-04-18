@@ -9,7 +9,7 @@ Resolve a memory leak.
 This version of `Stocks` has a class whose implementation violates a contract resulting in a memory leak.
 
 ### Steps
-1. Open a terminal window and `cd` into `jptwml/exercise2`.
+1. Open a terminal window and `cd` into `exercise2`.
 2. Compile and start Jetty using the `compile` and `appServerStart` scripts.
 3. Test the app using the URL `http://localhost:8080/lab/stock`.
 4. Start JMeter using the provided scripts.
