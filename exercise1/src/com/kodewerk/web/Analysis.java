@@ -20,8 +20,10 @@ public class Analysis extends HttpServlet {
     public void init() {
         try {
             String dataSource = StockProperties.getDataSource();
-            Class clazz = Class.forName( dataSource, true, Thread.currentThread().getContextClassLoader());
-            this.ds = (ClosingPriceDataSource)clazz.newInstance();
+            Class<? extends ClosingPriceDataSource> clazz =
+                    Class.forName( dataSource, true, Thread.currentThread().getContextClassLoader())
+                    .asSubclass(ClosingPriceDataSource.class);
+            this.ds = clazz.getConstructor().newInstance();
         } catch (Exception e) {
             System.out.println( e.getMessage());
             e.printStackTrace();
