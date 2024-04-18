@@ -1,26 +1,14 @@
 package com.kodewerk.db;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import com.kodewerk.cache.PriceCache;
+import com.kodewerk.stock.ClosingPrice;
+import com.kodewerk.stock.ClosingPriceList;
+import com.kodewerk.stock.TickerSymbol;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.util.Map;
-import java.util.HashMap;
-import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.kodewerk.stock.ClosingPriceList;
-import com.kodewerk.db.ClosingPriceDataSourceException;
-import com.kodewerk.stock.ClosingPrice;
 import com.kodewerk.stock.StockProperties;
-import com.kodewerk.stock.TickerSymbol;
-import com.kodewerk.cache.PriceCache;
 
 public class ClosingPriceRDBDataSource implements ClosingPriceDataSource {
 
@@ -52,7 +40,7 @@ public class ClosingPriceRDBDataSource implements ClosingPriceDataSource {
             return cache.get( ticker);
     }
 
-    public ClosingPrice getLatestClosingPrice( TickerSymbol ticker) throws ClosingPriceDataSourceException {
+    public ClosingPrice getLatestClosingPrice(TickerSymbol ticker) throws ClosingPriceDataSourceException {
         return load( ticker).getLastClosingPrice();
     }
 

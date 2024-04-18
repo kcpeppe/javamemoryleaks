@@ -1,5 +1,9 @@
 package com.kodewerk.db;
 
+import com.kodewerk.cache.PriceCache;
+import com.kodewerk.stock.ClosingPrice;
+import com.kodewerk.stock.ClosingPriceList;
+import com.kodewerk.stock.TickerSymbol;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -9,19 +13,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Collections;
 import java.io.*;
 
-import com.kodewerk.stock.ClosingPriceList;
-import com.kodewerk.db.ClosingPriceDataSourceException;
-import com.kodewerk.stock.ClosingPrice;
 import com.kodewerk.stock.StockProperties;
-import com.kodewerk.stock.TickerSymbol;
-import com.kodewerk.cache.PriceCache;
 
 public class ClosingPriceFileSystemDataSource implements ClosingPriceDataSource {
 
@@ -47,7 +41,7 @@ public class ClosingPriceFileSystemDataSource implements ClosingPriceDataSource 
             return cache.get( ticker);
     }
 
-    synchronized public ClosingPrice getLatestClosingPrice( TickerSymbol ticker) throws ClosingPriceDataSourceException {
+    synchronized public ClosingPrice getLatestClosingPrice(TickerSymbol ticker) throws ClosingPriceDataSourceException {
         return load( ticker).getLastClosingPrice();
     }
 

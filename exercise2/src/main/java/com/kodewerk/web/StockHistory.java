@@ -1,12 +1,13 @@
 package com.kodewerk.web;
 
-import com.kodewerk.db.*;
 import com.kodewerk.stock.*;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import java.io.BufferedOutputStream;
+import com.kodewerk.db.ClosingPriceDataSource;
+import com.kodewerk.db.ClosingPriceDataSourceException;
+import com.kodewerk.stock.*;
+
 import java.io.OutputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -18,8 +19,10 @@ public class StockHistory extends HistoryServlet {
     public void init() {
         try {
             String dataSource = StockProperties.getDataSource();
-            Class clazz = Class.forName( dataSource, true, Thread.currentThread().getContextClassLoader());
-            this.ds = (ClosingPriceDataSource)clazz.newInstance();
+            Class<? extends ClosingPriceDataSource> clazz =
+                    Class.forName( dataSource, true, Thread.currentThread().getContextClassLoader())
+                            .asSubclass(ClosingPriceDataSource.class);
+            this.ds = clazz.getConstructor().newInstance();
         } catch (Exception e) {
             getServletContext().log("An exception occurred", e);
         }

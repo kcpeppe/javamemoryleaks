@@ -1,14 +1,15 @@
 package com.kodewerk.web;
 
+import com.kodewerk.stock.ClosingPrice;
 import com.kodewerk.db.ClosingPriceDataSource;
 import com.kodewerk.stock.StockProperties;
 import com.kodewerk.stock.ClosingPriceList;
 import com.kodewerk.stock.TickerList;
-import com.kodewerk.stock.ClosingPrice;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -19,8 +20,10 @@ public class Analysis extends HttpServlet {
     public void init() {
         try {
             String dataSource = StockProperties.getDataSource();
-            Class clazz = Class.forName( dataSource, true, Thread.currentThread().getContextClassLoader());
-            this.ds = (ClosingPriceDataSource)clazz.newInstance();
+            Class<? extends ClosingPriceDataSource> clazz =
+                    Class.forName( dataSource, true, Thread.currentThread().getContextClassLoader())
+                            .asSubclass(ClosingPriceDataSource.class);
+            this.ds = clazz.getConstructor().newInstance();
         } catch (Exception e) {
             System.out.println( e.getMessage());
             e.printStackTrace();
@@ -41,7 +44,7 @@ public class Analysis extends HttpServlet {
         doGet(request, response);
     }
 
-    public ClosingPrice find90thPercentile( ClosingPriceList list) {
+    public ClosingPrice find90thPercentile(ClosingPriceList list) {
         return list.find90thPercentile();
     }
 

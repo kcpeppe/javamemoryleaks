@@ -2,8 +2,6 @@ package com.kodewerk.stock;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Arrays;
-import java.util.Comparator;
 
 public class ClosingPriceList {
 
