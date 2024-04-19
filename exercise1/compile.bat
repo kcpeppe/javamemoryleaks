@@ -3,7 +3,7 @@ call ..\setEnv.bat
 if "%JAVA%" == "" goto usage
 
 
-set DOMAIN=src/com/kodewerk/stock/*.java src/com/kodewerk/web/*.java src/com/kodewerk/db/*.java
+set DOMAIN=src/main/java/com/kodewerk/stock/*.java src/main/java/com/kodewerk/web/*.java src/main/java/com/kodewerk/db/*.java
 set SOURCES=%DOMAIN%
 set EXPLODED=webapps/lab
 

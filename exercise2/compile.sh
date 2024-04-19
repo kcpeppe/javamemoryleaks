@@ -2,7 +2,7 @@
 
 . ../setEnv.sh
 
-export DOMAIN="src/com/kodewerk/stock/*.java src/com/kodewerk/web/*.java src/com/kodewerk/db/*.java src/com/kodewerk/cache/*"
+export DOMAIN="src/main/java/com/kodewerk/stock/*.java src/main/java/com/kodewerk/web/*.java src/main/java/com/kodewerk/db/*.java src/main/java/com/kodewerk/cache/*"
 export SOURCES="$DOMAIN"
 export EXPLODED="webapps/lab"
 
